@@ -58,6 +58,7 @@ const UpdateProduct = ({match})=>{
     }
 
     const init =(productId)=>{
+        console.log(productId,"hkjhlh")
         getSingleProduct(productId).then((data)=>{
             if(data){
                 console.log("ahfshksjfhl",data)

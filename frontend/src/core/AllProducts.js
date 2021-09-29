@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { deleteProduct } from '../auth'
 
-const AllProducts = ({products})=>{
 
+const AllProducts = ({products})=>{
+    // console.log(props);
     const destroyProduct = (productId) =>(
         deleteProduct(productId).then((data)=>{
             if(data.error){
@@ -11,6 +12,7 @@ const AllProducts = ({products})=>{
             }
         })
     )
+   
 
    return <div className="mt-3">
        <h2>All Product</h2>
@@ -19,7 +21,7 @@ const AllProducts = ({products})=>{
     <tr>
       <th scope="col">No.</th>
       <th scope="col">Name</th>
-      <th scope="col">Category</th>
+     
       <th scope="col">Price</th>
       <th scope="col">quantity</th>
       <th scope="col">Edit</th>
@@ -28,11 +30,11 @@ const AllProducts = ({products})=>{
   </thead>
   <tbody>
     
-      {products.map((p,i)=>(
+      {products && products.map((p,i)=>(
           <tr key={i}>
           <th scope="row" >{i+1}</th>
           <td>{p.name}</td>
-          <td>{p.category.name}</td>
+         
           <td>{p.price}</td>
           <td>{p.quantity}</td>
           <td>

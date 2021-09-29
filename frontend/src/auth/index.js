@@ -111,7 +111,8 @@ export const getProduct = ()=>{
             "Content-Type":"application/json"
         }
     }).then((res)=>{
-        return res.json()
+        console.log(res)
+        return res.json(res)
     }).catch((error)=>{
         console.log(error);
     })

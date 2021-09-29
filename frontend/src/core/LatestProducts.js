@@ -29,7 +29,7 @@ useEffect(() => {
   return  (<div className=" mt-5">
       <h3>Latest Products</h3>
       <div className="row ">
-      {products.map((products,i)=>(
+      {products.length>0 && products.map((products,i)=>(
         <Card className="m-5 col-md">
             <Card.Header as="h5" key={i}>{products.category.name}</Card.Header>
             <Card.Body>

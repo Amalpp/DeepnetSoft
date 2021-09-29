@@ -26,19 +26,19 @@ exports.newProduct=(req,res)=>{
     });
 }
 exports.list = (req, res) => {
-    let limit = parseInt(req.query.limit) || 0;
+  
     Product.find()
-        .populate('category')
-        .sort([['createdAt', 'desc']])
-        .limit(limit)
-        .exec((err, products) => {
-            if (err) {
-                return res.status(400).json({
-                    error: 'Products not found'
-                });
-            }
-            res.json(products);
-        });
+        .then((result)=> {
+            
+            res.status(200).json({
+                products:result
+            });
+        }).catch((error) => {
+            res.status(422).json({
+                status: false,
+                message: error+''
+            })
+        })
 };
 
 exports.removeProduct = (req,res)=>{
@@ -76,7 +76,6 @@ exports.searchProduct = (req, res) => {
 
 exports.productById = (req, res, next, id) => {
     Product.findById(id)
-        .populate('category')
         .exec((err, product) => {
             if (err || !product) {
                 return res.status(400).json({
@@ -89,7 +88,6 @@ exports.productById = (req, res, next, id) => {
 };
 
 exports.update = (req, res) => {
-    console.log("called",req.body)
     let product = req.product;
     product = _.extend(product,req.body)
     product.save((err, result) => {

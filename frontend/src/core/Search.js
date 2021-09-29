@@ -95,7 +95,7 @@ const Search = ()=>{
             <div className="container">{searchForm()}</div>
         </div>
         
-        {searched ? <AllProducts products={results} />  : <AllProducts products={products} />}
+        {searched ? <AllProducts products={results} />  :null}
        </div>
     )
 }

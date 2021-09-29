@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import { getProduct } from "../auth";
 import Layout from "./Layout";
-// import { Dropdown } from 'react-bootstrap';
+
 import LastestProduct from "./LatestProducts";
 import AllProducts from "./AllProducts";
 import Search from "./Search";
@@ -18,22 +18,18 @@ const Home = ()=>{
     })
     
     const {products} = values
-
-    const init = ()=>(
+    useEffect(() => {
         getProduct().then((data)=>{
             console.log(data)
             if(data){
                 console.log(data)
-                setValues({...values,products:data})
+                setValues({...values,products:data.products})
             }else{
                 
             }
         })
-    )
-    useEffect(() => {
-        init()
         
-     }, [])
+     },[])
 
 
     const links= ()=>{
@@ -51,7 +47,7 @@ const Home = ()=>{
             {links()}
             <Search />
             {/* {navBar()}  */}
-             { /* <AllProducts products={products}/> */}
+    <AllProducts products={products}/>
             <LastestProduct  />
         </Layout>     
     )
